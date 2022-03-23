@@ -26,3 +26,22 @@ jobs:
       run: mvn -B package --file pom.xml
     - run: |
         echo "hello world"
+  artibuild: 
+     runs-on: ubuntu-latest
+     
+     steps:
+     - name: Create a temp artifact folder
+       run: mkdir hello
+       
+     - name: send it to the temp folder 
+       run: |
+        cd hello
+        echo "hello" > hello.txt
+        echo "world" > world.txt
+     
+     - name: use artifact from github action
+       uses: actions/upload-artifact@v2
+       with:
+        name: assest for downloads
+        path: downloads 
+  
